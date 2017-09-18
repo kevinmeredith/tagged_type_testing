@@ -1,0 +1,25 @@
+package net 
+
+import scalaz._, Scalaz._
+
+object X {
+
+
+  def main(args: Array[String]): Unit = {
+    println(regular)
+    println(unwrapped)
+  }
+
+  trait Foo
+
+  def regular: String = {
+    val foo: Foo @@ String = Tag.of[Foo]("hi")
+    s"hi $foo"
+  } 
+
+  def unwrapped: String = {
+    val	 foo: Foo @@ String = Tag.of[Foo]("hi")
+    s"hi ${Tag.unwrap(foo)}"
+  }
+
+}
